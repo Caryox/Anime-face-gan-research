@@ -1,1 +1,9 @@
 https://towardsdatascience.com/demystified-wasserstein-gan-with-gradient-penalty-ba5e9b905ead => Gradient Penalty für Wasserstein
+
+https://arxiv.org/pdf/1704.00028.pdf => Wasserstein GAN Originalimplementierung
+
+https://arxiv.org/pdf/1506.05439.pdf => Lernen mittels WassersteinLoss
+
+https://github.com/t-vi/pytorch-tvmisc/blob/master/wasserstein-distance/Semi-Improved_Training_of_Wasserstein_GAN.ipynb => Implementierung WassersteinGAN
+
+https://de.wikipedia.org/wiki/Distanzfunktion => Liepschitz-Distanz
