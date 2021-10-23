@@ -1,0 +1,7 @@
+1. Auswertung Bilder und Ausprägung der Auflösungskombinationen
+
+2. Dataloader MemoryPinning aktivieren (pin_memory) zur Transferierung der Daten auf Tensoren
+
+3. num_worker auf 0 setzen
+
+4. Prüfen ob Anzahl Bilder durch Batchgröße teilbar ist. Wenn nicht => drop_last=True 
