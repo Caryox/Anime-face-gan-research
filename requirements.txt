@@ -10,7 +10,7 @@ torch==1.10.0
 torchviz==0.0.2
 torchvision==0.10.1
 torchsummary==1.5.1
-
+torchgan==0.1.0
 
 #Sonstige Funktionen
 matplotlib==3.4.3
