@@ -72,15 +72,15 @@ Allen Modellen identisch ist:
 - Integration von BatchNormalization
 - Auswirkungsmessung der Learningrate und der Beta-Parameter
 
-## (1) Parallel Deep Convolution Layer
+## (1) Parallele Conv2D-Layer Layer
 Innerhalb des DC-WGAN und des Wasserstein DC-WGAN wurde in Nähe des Inputlayers eine parallele Conv2D Struktur im Generator aufgebaut. Dies hat den Hintergrund, dass ein Equilibrium zwischen dem Generator-Loss und dem Wasserstein-Loss stattfinden muss damit das Modell in der nicht-Wasserstein Struktur gut konvergiert.
 
 - Parallel Layer 1 = KernelSize (1,2)
 - Parallel Layer 2 = KernelSize (2,1)
 
-Die Idee ist es, dass durch die unterschiedliche Form der Kernel die jeweiligen Layer unterschiedliche Feinstrukturen herausarbeiten (z.B. Haare, Augen) und eigenständig die Merkmale erlernen. Die gemeinsamen Merkmale werden mittels Concatenate-Layer wieder zusammengetan und in den folgenden Hidden Layern weiter verarbeitet. Das initiale DC-WGAN besaß keine ausreichende Leistungsfähigkeit, um Bilder welche vom Diskriminator als Original bewertet werden zu generieren.   
+Die Idee ist es, dass durch die unterschiedliche Form der Kernel die jeweiligen Layer unterschiedliche Feinstrukturen herausarbeiten (z.B. Haare, Augen) und eigenständig die Merkmale erlernen und anhand der Rauschinformationen abbilden kann. Die gemeinsamen Merkmale werden mittels Concatenate-Layer wieder zusammengetan und in den folgenden Hidden Layern weiter verarbeitet. Das initiale DC-WGAN besaß keine ausreichende Leistungsfähigkeit, um Bilder welche vom Diskriminator als Original bewertet werden zu generieren.   
 
-## (2) Label Smoothing
+## (2) Target Label Smoothing
 Die innerhalb der Modelle verwendeten Aktivierungsfunktionen tangieren dazu, Bilder mit dem Label 0 als Fake und Bilder mit dem Label 1 als Real anzusehen. Es kann dazu kommen, dass die Modelle anfangen zu übergeneralisieren und stets die natürliche Zahl 1 als Garant einer Aktivierung nutzen. Um diese Übergeneralisierung zu reduzieren, wird das Label Smoothing Verfahren eingesetzt. Hierbei werde reale Label als 0.9 deklariert. Werden Aktivierungen >0.9 durchgeführt, resultiert eine Abweichung gegenüber des optimalen Wertes wodurch eine Art penalty angewendet wird.
 
 ## (3) Experimentelles Gradient Penalty Smoothing
