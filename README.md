@@ -91,6 +91,7 @@ wird innerhalb des Wasserstein DC-GAN mit Gradient Penalty eine zusätzliche Reg
 
 ## Misc
 
-- Experimentelle Ermittlung von Dropout-Layer Positionen und Werten
+- Experimentelle Ermittlung der optmialen Dropout-Positionierungen und deren Wahrscheinlichkeiten 
 - Integration von BatchNormalization
+- Auswirkungsmessung der Learningrate und der Beta-Parameter
 
