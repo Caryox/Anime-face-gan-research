@@ -77,14 +77,13 @@ Die Überlegung des Gradient Penalty Smoothing ist analog der Idee das Label Smo
 
 Innerhalb der Wasserstein Gradientenberechnung für den Diskriminator
 ![grafik](https://user-images.githubusercontent.com/56730144/154849031-9e512a33-7048-408a-b9db-0d6887f74d02.png)  
-
 wird die Kostenfunktion des Diskriminators in Relation zur Erkennungsrate von Bildern der Klassen "Fake" oder "Original" durchgeführt.
 
 ![grafik](https://user-images.githubusercontent.com/56730144/154849318-03c24177-42b6-4396-a016-35edcb6cfdd8.png)  
 Hierbei ist der maximal zulässige Wert *max* mit 1 angegeben.
 
 Durch eine Anpassung der Funktion hinzu  
-![grafik](https://user-images.githubusercontent.com/56730144/154849636-c0f251e4-d61d-4081-998f-da072825a381.png)
+![grafik](https://user-images.githubusercontent.com/56730144/154849636-c0f251e4-d61d-4081-998f-da072825a381.png)  
 wird innerhalb des Wasserstein DC-GAN mit Gradient Penalty eine zusätzliche Regularisierung probiert.
 
 
@@ -94,4 +93,4 @@ wird innerhalb des Wasserstein DC-GAN mit Gradient Penalty eine zusätzliche Reg
 
 - Experimentelle Ermittlung von Dropout-Layer Positionen und Werten
 - Integration von BatchNormalization
-- 
+
