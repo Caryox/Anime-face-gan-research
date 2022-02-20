@@ -2,17 +2,16 @@
 
 Erstellen von Anime Gesichtern unter Nutzung von unterschiedlichen Implementierungen eines Generative Adversial Networks (GAN)
 
-- Deep Convolution GAN (mit Label Smoothing und parallelen Layern im Generator)
-- Wasserstein Deep Convolution GAN (mit parallelen Layern im Generator)
-- Wasserstein Deep Convolution GAN mit Gradient Penalty (vereinfachte Layerstruktu mit Label Smoothing)
+- Deep Convolution GAN
+- Wasserstein Deep Convolution GAN
+- Wasserstein Deep Convolution GAN mit Gradient Penalty
 
-Dozent: Philipp Koch  
-Immatrikulationsnummer: 446024  
-Name: Benedikt Hollmann  
+![grafik](https://user-images.githubusercontent.com/56730144/154854221-5a8fae5b-6ac3-4194-8df2-0ce08b9c3cb6.png)  
+*Ergebnisse DC-WGAN*
 
 # Datengrundlage
 
-Als Grundlage dient ein Datensatz von 63632 Anime Gesichtern (https://github.com/bchao1/Anime-Face-Dataset). 
+Als Grundlage dient ein Datensatz von 63632 Anime Gesichtern (https://github.com/bchao1/Anime-Face-Dataset).
 
 # Datenanalyse
 
@@ -61,7 +60,19 @@ def weights_init_kaiming(m):
 ```
 
 # Weitere Anpassungen
-## Parallel Deep Convolution Layer
+
+Modell             |  Optimierung
+:-------------------------:|:-------------------------:
+DC-GAN |  Parallele Conv2D-Layer im Generator (1), Target Label Smoothing (2)
+DC-WGAN |  Parallele Conv2D-Layer im Generator
+DC-GPWGAN |  Serielle Conv2D-Layerstruktur, experimentelles Gradient Label Smoothing (3) 
+
+Allen Modellen identisch ist:
+- Experimentelle Ermittlung der optmialen Dropout-Positionierungen und deren Wahrscheinlichkeiten 
+- Integration von BatchNormalization
+- Auswirkungsmessung der Learningrate und der Beta-Parameter
+
+## (1) Parallel Deep Convolution Layer
 Innerhalb des DC-WGAN und des Wasserstein DC-WGAN wurde in Nähe des Inputlayers eine parallele Conv2D Struktur im Generator aufgebaut. Dies hat den Hintergrund, dass ein Equilibrium zwischen dem Generator-Loss und dem Wasserstein-Loss stattfinden muss damit das Modell in der nicht-Wasserstein Struktur gut konvergiert.
 
 - Parallel Layer 1 = KernelSize (1,2)
@@ -69,10 +80,10 @@ Innerhalb des DC-WGAN und des Wasserstein DC-WGAN wurde in Nähe des Inputlayers
 
 Die Idee ist es, dass durch die unterschiedliche Form der Kernel die jeweiligen Layer unterschiedliche Feinstrukturen herausarbeiten (z.B. Haare, Augen) und eigenständig die Merkmale erlernen. Die gemeinsamen Merkmale werden mittels Concatenate-Layer wieder zusammengetan und in den folgenden Hidden Layern weiter verarbeitet. Das initiale DC-WGAN besaß keine ausreichende Leistungsfähigkeit, um Bilder welche vom Diskriminator als Original bewertet werden zu generieren.   
 
-## Label Smoothing
+## (2) Label Smoothing
 Die innerhalb der Modelle verwendeten Aktivierungsfunktionen tangieren dazu, Bilder mit dem Label 0 als Fake und Bilder mit dem Label 1 als Real anzusehen. Es kann dazu kommen, dass die Modelle anfangen zu übergeneralisieren und stets die natürliche Zahl 1 als Garant einer Aktivierung nutzen. Um diese Übergeneralisierung zu reduzieren, wird das Label Smoothing Verfahren eingesetzt. Hierbei werde reale Label als 0.9 deklariert. Werden Aktivierungen >0.9 durchgeführt, resultiert eine Abweichung gegenüber des optimalen Wertes wodurch eine Art penalty angewendet wird.
 
-## Experimentelles Gradient Penalty Smoothing
+## (3) Experimentelles Gradient Penalty Smoothing
 Die Überlegung des Gradient Penalty Smoothing ist analog der Idee das Label Smoothing. Es wird mittels der Manipulation der Gradiententensoren eine Verlagerung der Gradienten von realen Bildern von 1 auf 0.9 avisiert.
 
 Innerhalb der Wasserstein Gradientenberechnung für den Diskriminator
@@ -85,13 +96,3 @@ Hierbei ist der maximal zulässige Wert *max* mit 1 angegeben.
 Durch eine Anpassung der Funktion hinzu  
 ![grafik](https://user-images.githubusercontent.com/56730144/154849636-c0f251e4-d61d-4081-998f-da072825a381.png)  
 wird innerhalb des Wasserstein DC-GAN mit Gradient Penalty eine zusätzliche Regularisierung probiert.
-
-
-
-
-## Misc
-
-- Experimentelle Ermittlung der optmialen Dropout-Positionierungen und deren Wahrscheinlichkeiten 
-- Integration von BatchNormalization
-- Auswirkungsmessung der Learningrate und der Beta-Parameter
-
