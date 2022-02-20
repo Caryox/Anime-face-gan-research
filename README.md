@@ -45,7 +45,7 @@ def weights_init(m):
 wird eine Abwandlung diesem für alle betrachteten GAN-Modelle verwendet. Verwendet wird die He-Initialisierung (auch Kaiming-He Initialisierung genannt), welche im Gegensatz zum originalem Initialisierungsverfahren folgende Vorteile bietet:
 
 - Schnelleres Konvergieren der Ergebnisse
-- Probleme bezüglich Exploding/Vanishing - Gradients wird behoben, was insbesondere im Umfeld von GAN's hilfreich erscheint.
+- Probleme bezüglich "Exploding Gradients" und "Vanishing Gradients" werden behoben, wodurch sich eine optimierte Regulierung im GAN-Umfeld erschließt
 
 Ermöglicht wird dies durch die Dämpfung des Initialisierungsinputs, da Schwankungen innerhalb der originalen Initialisierung exponentiell vergrößert werden.
 Siehe hierzu (https://arxiv.org/abs/1502.01852v1)
