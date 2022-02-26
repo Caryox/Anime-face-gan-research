@@ -9,6 +9,15 @@ Erstellen von Anime Gesichtern unter Nutzung von unterschiedlichen Implementieru
 ![grafik](https://user-images.githubusercontent.com/56730144/154854221-5a8fae5b-6ac3-4194-8df2-0ce08b9c3cb6.png)  
 *Ergebnisse DC-WGAN*
 
+Die vorliegenden Dateien involvieren hierbei alle für den Entwicklungsprozess benutze Notziablagen (ToDo.txt, Hilfreiche_Links.txt)  
+Alle Modelle innerhalb des ipynb wurden unter der CUDA Laufzeitumgebung entwickelt. Alle Modelle wurden 20 Epochen bei einer BatchSize von 32 trainiert.  
+Die Computational Costs belaufen sich bei einer Nvidia Geforce 2080TI auf 2-3h für die 20 Epochen je nach GAN-Modell.  
+
+*__Unter Visual Studio Code wird die Extension "Better Comments @Aaron Bond" empfohlen, um Kommentare je nach Typ unterschiedlich darstellen zu können.__*  
+
+Eine ausführliche Beschreibung des Aufbaus und der verwendeten Methoden befindet sich in der .ipynb Datei.  
+Im folgenden eine Kurzbeschreibung des Ablaufs:    
+
 # Datengrundlage
 
 Als Grundlage dient ein Datensatz von 63632 Anime Gesichtern (https://github.com/bchao1/Anime-Face-Dataset).
@@ -95,4 +104,5 @@ Hierbei ist der maximal zulässige Wert *max* mit 1 angegeben.
 
 Durch eine Anpassung der Funktion hinzu  
 ![grafik](https://user-images.githubusercontent.com/56730144/154849636-c0f251e4-d61d-4081-998f-da072825a381.png)  
-wird innerhalb des Wasserstein DC-GAN mit Gradient Penalty eine zusätzliche Regularisierung probiert.
+wird innerhalb des Wasserstein DC-GAN mit Gradient Penalty eine zusätzliche Regularisierung probiert.  
+Inwiefern ein ähnlicher Effekt in Hinsicht auf das Label Smoothings insbesondere in Hinsicht auf die Regularisierung bei einer Übersicherheit des Modells erreicht werden kann, __ist zu prüfen!__
