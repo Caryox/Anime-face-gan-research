@@ -6,7 +6,7 @@
 #shutil
 
 #Torch-Bibliotheken
-torch==1.10.0+cu113
+torch==1.13.1+cu113
 torchviz==0.0.2
 torchvision==0.10.1+cu113
 torchsummary==1.5.1
