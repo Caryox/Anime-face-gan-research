@@ -15,5 +15,5 @@ torchgan==0.1.0
 #Sonstige Funktionen
 matplotlib==3.4.3
 pandas==1.3.3
-numpy==1.21.2
+numpy==1.22.0
 Pillow==10.0.0
